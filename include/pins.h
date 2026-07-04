@@ -4,8 +4,8 @@
 
 namespace Pins
 {
-    constexpr uint8_t RED   = D1;
-    constexpr uint8_t GREEN = D2;
-    constexpr uint8_t BLUE  = D5;
-    constexpr uint8_t WHITE = D6;
+    constexpr uint8_t RED   = 16;
+    constexpr uint8_t GREEN = 17;
+    constexpr uint8_t BLUE  = 18;
+    constexpr uint8_t WHITE = 19;
 }
