@@ -1,26 +1,23 @@
 #include "Application.h"
 #include <Arduino.h>
-#include "pins.h"
-
 
 void Application::begin()
 {
-      output.begin();
+    output.begin();
+    lighting.begin(output);
 }
 
 void Application::update()
 {
-    // Fade up
-for(uint16_t i = 0; i <= 4095; i++)
-{
-    output.write(0, i);
-    delay(1);
-}
-    // Fade down
-for(int i = 4095; i >= 0; i--)
+    static bool state = false;
 
-{
-    output.write(0, i);
-    delay(1);
-}
+    if (timer.elapsed(2000))
+    {
+        state = !state;
+
+        if (state)
+            lighting.setZone(Zone::A, Color::Red());
+        else
+            lighting.setZone(Zone::A, Color::Blue());
+    }
 }

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Arduino.h>
-
+#include "Color.h"
 class OutputDriver
 {
 public:
@@ -11,6 +11,9 @@ public:
     void begin();
 
     void write(uint8_t channel, uint16_t value);
+    void setChannel(uint8_t channel, uint16_t value);
+
+void setRGBW(uint8_t firstChannel, const Color& color);
 
 private:
 
