@@ -3,8 +3,11 @@
 
 void Application::begin()
 {
-    output.begin();
-    lighting.begin(output);
+   output.begin();
+
+   lighting.begin(output);
+
+   settings.begin();
 }
 
 void Application::update()

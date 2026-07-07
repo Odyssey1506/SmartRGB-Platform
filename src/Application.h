@@ -2,6 +2,7 @@
 #include "drivers/OutputDriver.h"
 #include "engine/LightingEngine.h"
 #include "Timer.h"
+#include "settings/SettingsManager.h"
 
 class Application
 {
@@ -12,6 +13,6 @@ public:
     private:
     OutputDriver output;
     LightingEngine lighting;
-
+    SettingsManager settings;
     Timer timer;
 };
