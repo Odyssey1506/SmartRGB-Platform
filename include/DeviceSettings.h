@@ -3,7 +3,7 @@
 #include "LightingScene.h"
 #include "StartupSettings.h"
 
-struct DeviceState
+struct DeviceSettings
 {
     LightingScene currentScene;
 

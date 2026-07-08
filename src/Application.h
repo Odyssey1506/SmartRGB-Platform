@@ -15,4 +15,5 @@ public:
     LightingEngine lighting;
     SettingsManager settings;
     Timer timer;
+    DeviceSettings settingsData;
 };

@@ -3,11 +3,17 @@
 
 void Application::begin()
 {
-   output.begin();
+    Serial.begin(115200);
 
-   lighting.begin(output);
+    output.begin();
+    lighting.begin(output);
 
-   settings.begin();
+    settings.begin();
+
+    settings.load(settingsData);
+
+    Serial.print("Loaded brightness = ");
+    Serial.println(settingsData.currentScene.zones[0].brightness);
 }
 
 void Application::update()

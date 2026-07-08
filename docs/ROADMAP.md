@@ -15,7 +15,7 @@
 ## Phase 2 - Persistence
 
 - [ ] ZoneSettings
-- [ ] DeviceState
+- [ ] DeviceSettings
 - [ ] StartupSettings
 - [ ] LightingScene
 - [ ] SettingsManager

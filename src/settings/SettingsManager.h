@@ -1,16 +1,24 @@
 #pragma once
 
-#include "DeviceState.h"
+#include <Preferences.h>
+#include "DeviceSettings.h"
 
 class SettingsManager
 {
 public:
-
     bool begin();
 
-    bool load(DeviceState& state);
+    bool load(DeviceSettings& settings);
 
-    bool save(const DeviceState& state);
+    bool save(const DeviceSettings& settings);
 
-    void reset(DeviceState& state);
+    void reset(DeviceSettings& settings);
+
+private:
+
+    Preferences preferences;
+
+bool saveZone(const ZoneSettings& zone, uint8_t index);
+
+bool loadZone(ZoneSettings& zone, uint8_t index);
 };
