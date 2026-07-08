@@ -3,12 +3,14 @@
 #include "engine/LightingEngine.h"
 #include "Timer.h"
 #include "settings/SettingsManager.h"
+#include "storage/DirtySaveManager.h"
 
 class Application
 {
 public:
     void begin();
     void update();
+    void markSettingsDirty();
 
     private:
     OutputDriver output;
@@ -16,4 +18,5 @@ public:
     SettingsManager settings;
     Timer timer;
     DeviceSettings settingsData;
+    DirtySaveManager dirtySave;
 };

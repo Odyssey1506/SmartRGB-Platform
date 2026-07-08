@@ -20,13 +20,36 @@ void Application::update()
 {
     static bool state = false;
 
-    if (timer.elapsed(2000))
-    {
-        state = !state;
+if (timer.elapsed(2000))
+{
+    state = !state;
 
-        if (state)
-            lighting.setZone(Zone::A, Color::Red());
-        else
-            lighting.setZone(Zone::A, Color::Blue());
-    }
+if (state)
+{
+    settingsData.currentScene.zones[0].solidColor = Color::Red();
+
+    lighting.setZone(
+        Zone::A,
+        settingsData.currentScene.zones[0].solidColor);
+
+    dirtySave.mark();
+}
+else
+{
+    settingsData.currentScene.zones[0].solidColor = Color::Blue();
+
+    lighting.setZone(
+        Zone::A,
+        settingsData.currentScene.zones[0].solidColor);
+
+    dirtySave.mark();
+}
+}
+
+if (dirtySave.shouldSave())
+{
+    settings.save(settingsData);
+
+    dirtySave.clear();
+}
 }

@@ -17,6 +17,13 @@ bool SettingsManager::load(DeviceSettings& settings)
     loadZone(settings.currentScene.zones[1], 1);
 
     return true;
+
+    settings.startup.mode =
+    static_cast<StartupMode>(
+        preferences.getUChar("startup_mode", 0));
+
+    settings.startup.defaultScene =
+    preferences.getUChar("startup_scene", 0);
 }
 
 bool SettingsManager::save(const DeviceSettings& settings)
@@ -25,6 +32,14 @@ bool SettingsManager::save(const DeviceSettings& settings)
     saveZone(settings.currentScene.zones[1], 1);
 
     return true;
+
+    preferences.putUChar(
+    "startup_mode",
+    static_cast<uint8_t>(settings.startup.mode));
+
+     preferences.putUChar(
+    "startup_scene",
+    settings.startup.defaultScene);
 }
 
 void SettingsManager::reset(DeviceSettings& settings)

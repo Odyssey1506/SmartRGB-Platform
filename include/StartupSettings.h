@@ -1,21 +1,10 @@
 #pragma once
 
-#include "LightingScene.h"
-
-enum class StartupBehavior
-{
-    RestoreLastState,
-
-    FactoryDefault,
-
-    AlwaysOff,
-
-    CustomScene
-};
+#include "StartupMode.h"
 
 struct StartupSettings
 {
-    StartupBehavior behavior = StartupBehavior::RestoreLastState;
+    StartupMode mode = StartupMode::ResumeLastState;
 
-    LightingScene customScene;
+    uint8_t defaultScene = 0;
 };

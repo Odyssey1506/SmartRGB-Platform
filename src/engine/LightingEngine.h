@@ -5,6 +5,7 @@
 #include "Color.h"
 #include "Zone.h"
 #include "drivers/OutputDriver.h"
+#include "LightingScene.h"
 
 class LightingEngine
 {
@@ -14,9 +15,9 @@ public:
 
     void setZone(Zone zone,const Color& color);
 
+    void render(const LightingScene& scene);
 private:
 
     OutputDriver* output=nullptr;
 
-    Color zones[2];
 };
