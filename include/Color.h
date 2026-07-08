@@ -1,30 +1,46 @@
 #pragma once
 
-#include <Arduino.h>
+#include <stdint.h>
 
 struct Color
 {
-    uint16_t red;
-    uint16_t green;
-    uint16_t blue;
-    uint16_t white;
+    uint8_t r = 0;
+    uint8_t g = 0;
+    uint8_t b = 0;
+    uint8_t w = 0;
 
-    Color(
-        uint16_t r = 0,
-        uint16_t g = 0,
-        uint16_t b = 0,
-        uint16_t w = 0)
-        :
-        red(r),
-        green(g),
-        blue(b),
-        white(w)
+    constexpr Color() = default;
+
+    constexpr Color(uint8_t red,
+                    uint8_t green,
+                    uint8_t blue,
+                    uint8_t white = 0)
+        : r(red), g(green), b(blue), w(white)
     {
     }
 
-    static Color Off();
-    static Color Red();
-    static Color Green();
-    static Color Blue();
-    static Color White();
+    static constexpr Color Red()
+    {
+        return Color(255, 0, 0);
+    }
+
+    static constexpr Color Green()
+    {
+        return Color(0, 255, 0);
+    }
+
+    static constexpr Color Blue()
+    {
+        return Color(0, 0, 255);
+    }
+
+    static constexpr Color White()
+    {
+        return Color(255, 255, 255, 255);
+    }
+
+    static constexpr Color Black()
+    {
+        return Color(0, 0, 0);
+    }
 };

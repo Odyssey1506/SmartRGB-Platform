@@ -37,8 +37,8 @@ void OutputDriver::setChannel(uint8_t channel, uint16_t value)
 
 void OutputDriver::setRGBW(uint8_t firstChannel, const Color& color)
 {
-    setChannel(firstChannel + 0, color.red);
-    setChannel(firstChannel + 1, color.green);
-    setChannel(firstChannel + 2, color.blue);
-    setChannel(firstChannel + 3, color.white);
+    setChannel(firstChannel + 0, color.r);
+    setChannel(firstChannel + 1, color.g);
+    setChannel(firstChannel + 2, color.b);
+    setChannel(firstChannel + 3, color.w);
 }
