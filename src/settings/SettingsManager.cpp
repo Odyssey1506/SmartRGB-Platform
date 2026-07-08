@@ -38,76 +38,43 @@ void SettingsManager::reset(DeviceSettings& settings)
 
 bool SettingsManager::saveZone(const ZoneSettings& zone, uint8_t index)
 {
-    String key;
+    putByte(index, "br", zone.brightness);
+    putBool(index, "en", zone.enabled);
+    putByte(index, "ef", static_cast<uint8_t>(zone.effect));
+    putByte(index, "sp", zone.speed);
 
-    // Brightness
-    key = "z" + String(index) + "_br";
-    preferences.putUChar(key.c_str(), zone.brightness);
-
-    // Enabled
-    key = "z" + String(index) + "_en";
-    preferences.putBool(key.c_str(), zone.enabled);
-
-    // Effect
-    key = "z" + String(index) + "_ef";
-    preferences.putUChar(key.c_str(),
-                         static_cast<uint8_t>(zone.effect));
-
-    // Speed
-    key = "z" + String(index) + "_sp";
-    preferences.putUChar(key.c_str(), zone.speed);
-
-    // Color
-    saveColor(zone.solidColor, "z" + String(index));
+    saveColor(zone.solidColor, index);
 
     return true;
 }
 bool SettingsManager::loadZone(ZoneSettings& zone, uint8_t index)
 {
-    String key;
+    zone.brightness = getByte(index, "br", 255);
+    zone.enabled = getBool(index, "en", true);
+    zone.effect = static_cast<Effect>(getByte(index, "ef", 0));
+    zone.speed = getByte(index, "sp", 128);
 
-    // Brightness
-    key = "z" + String(index) + "_br";
-    zone.brightness = preferences.getUChar(key.c_str(), 255);
-
-    // Enabled
-    key = "z" + String(index) + "_en";
-    zone.enabled = preferences.getBool(key.c_str(), true);
-
-    // Effect
-    key = "z" + String(index) + "_ef";
-    zone.effect = static_cast<Effect>(
-        preferences.getUChar(key.c_str(), 0));
-
-    // Speed
-    key = "z" + String(index) + "_sp";
-    zone.speed = preferences.getUChar(key.c_str(), 128);
-
-    // Color
-    loadColor(zone.solidColor, "z" + String(index));
+    loadColor(zone.solidColor, index);
 
     return true;
 }
 
-bool SettingsManager::saveColor(
-    const Color& color,
-    const String& prefix)
+bool SettingsManager::saveColor(const Color& color, uint8_t zone)
 {
-preferences.putUChar((prefix + "_r").c_str(), color.r);
-preferences.putUChar((prefix + "_g").c_str(), color.g);
-preferences.putUChar((prefix + "_b").c_str(), color.b);
-preferences.putUChar((prefix + "_w").c_str(), color.w);
+    putByte(zone, "r", color.r);
+    putByte(zone, "g", color.g);
+    putByte(zone, "b", color.b);
+    putByte(zone, "w", color.w);
 
-return true;
-
+    return true;
 }
 
-bool SettingsManager::loadColor(Color& color, const String& prefix)
+bool SettingsManager::loadColor(Color& color, uint8_t zone)
 {
-    color.r = preferences.getUChar((prefix + "_r").c_str(), 0);
-    color.g = preferences.getUChar((prefix + "_g").c_str(), 0);
-    color.b = preferences.getUChar((prefix + "_b").c_str(), 0);
-    color.w = preferences.getUChar((prefix + "_w").c_str(), 0);
+    color.r = getByte(zone, "r", 0);
+    color.g = getByte(zone, "g", 0);
+    color.b = getByte(zone, "b", 0);
+    color.w = getByte(zone, "w", 0);
 
     return true;
 }

@@ -22,13 +22,11 @@ bool saveZone(const ZoneSettings& zone, uint8_t index);
 
 bool loadZone(ZoneSettings& zone, uint8_t index);
 
-bool saveColor(const Color& color,
-               const String& prefix);
+bool saveColor(const Color& color, uint8_t zone);
 
-bool loadColor(Color& color,
-               const String& prefix);
+bool loadColor(Color& color, uint8_t zone);
 
-               String makeKey(uint8_t zone, const char* field);
+String makeKey(uint8_t zone, const char* field);
 
 void putByte(uint8_t zone, const char* field, uint8_t value);
 
