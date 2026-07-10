@@ -13,8 +13,6 @@ public:
 
     void begin(OutputDriver& driver);
 
-    void setZone(Zone zone,const Color& color);
-
     void render(const LightingScene& scene);
 private:
 
