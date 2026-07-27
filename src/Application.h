@@ -9,6 +9,7 @@
 #include "Zone.h"
 #include "Color.h"
 #include "Effect.h"
+#include "scene/SceneManager.h"
 
 class Application
 {
