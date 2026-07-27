@@ -14,6 +14,7 @@
 class Application
 {
 public:
+Application();
     void begin();
     void update();
     void render();
