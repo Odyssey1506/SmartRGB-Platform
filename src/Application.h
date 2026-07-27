@@ -25,6 +25,10 @@ Application();
     void setSpeed(Zone zone, uint8_t speed);
     void setZoneEnabled(Zone zone, bool enabled);
     void stateChanged(bool needsRender = true);
+
+bool saveScene(uint8_t slot);
+
+bool loadScene(uint8_t slot);
     
     private:
     OutputDriver output;
