@@ -5,17 +5,18 @@
 class SceneManager
 {
 public:
-    bool saveScene(DeviceSettings& settings,
-                   uint8_t slot,
-                   const char* name);
+    explicit SceneManager(DeviceSettings& settings);
 
-    bool loadScene(DeviceSettings& settings,
-                   uint8_t slot);
+    bool save(uint8_t slot);
 
-    bool deleteScene(DeviceSettings& settings,
-                     uint8_t slot);
+    bool load(uint8_t slot);
 
-    bool renameScene(DeviceSettings& settings,
-                     uint8_t slot,
-                     const char* name);
+    uint8_t count() const;
+
+private:
+    static constexpr uint8_t MaxScenes = 5;
+
+    DeviceSettings& settingsData;
+
+    LightingScene scenes[MaxScenes];
 };
