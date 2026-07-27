@@ -97,3 +97,8 @@ ZoneSettings& Application::getZone(Zone zone)
         (zone == Zone::A) ? 0 : 1
     ];
 }
+
+Application::Application()
+    : scenes(settingsData)
+{
+}
