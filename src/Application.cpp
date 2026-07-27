@@ -102,3 +102,20 @@ Application::Application()
     : scenes(settingsData)
 {
 }
+
+bool Application::saveScene(uint8_t slot)
+{
+    return scenes.save(slot);
+}
+
+bool Application::loadScene(uint8_t slot)
+{
+    bool ok = scenes.load(slot);
+
+    if (ok)
+    {
+        render();
+    }
+
+    return ok;
+}
