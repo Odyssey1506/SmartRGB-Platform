@@ -1,16 +1,31 @@
 #include "scene/SceneManager.h"
-#include <string.h>
 
-bool SceneManager::loadScene(DeviceSettings& settings,
-                             uint8_t slot)
+SceneManager::SceneManager(DeviceSettings& settings)
+    : settingsData(settings)
 {
-    if (slot >= MAX_SCENES)
+}
+
+bool SceneManager::save(uint8_t slot)
+{
+    if (slot >= MaxScenes)
         return false;
 
-    if (!settings.scenes[slot].used)
-        return false;
-
-    settings.currentScene = settings.scenes[slot].scene;
+    scenes[slot] = settingsData.currentScene;
 
     return true;
+}
+
+bool SceneManager::load(uint8_t slot)
+{
+    if (slot >= MaxScenes)
+        return false;
+
+    settingsData.currentScene = scenes[slot];
+
+    return true;
+}
+
+uint8_t SceneManager::count() const
+{
+    return MaxScenes;
 }
